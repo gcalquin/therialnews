@@ -10,7 +10,7 @@
       <%= link_to "Escribir", new_news_path, class:"nav-item nav-link"%>
       <%if user_signed_in? %>
       <li class="nav-item">
-         <span>Usuario logeado</span>
+         <span>Usuario logeado: <%=current_user.email%></span>
          <%= button_to "Cerrar Sesión", destroy_user_session_path, method: :delete, class:"nav-item nav-link"%>
       </li>
       <%else%>
