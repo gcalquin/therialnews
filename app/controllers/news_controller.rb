@@ -1,6 +1,6 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
-  before_action :authenticate_user, only:[ :new, :create, :edit, :update, :destroy ]
+  before_action :authenticate_user!, only:[ :new, :create, :edit, :update, :destroy ]
   # GET /news or /news.json
   def index
     @news = News.all
@@ -12,7 +12,10 @@ class NewsController < ApplicationController
 
   # GET /news/new
   def new
-    @news = News.new
+    # linea original @news = News.new
+
+    @news = current_user.news.build
+
   end
 
   # GET /news/1/edit
@@ -21,7 +24,11 @@ class NewsController < ApplicationController
 
   # POST /news or /news.json
   def create
-    @news = News.new(news_params)
+   # linea original  @news = News.new(news_params)
+
+
+    @news = current_user.news.build(news_params)
+
 
     respond_to do |format|
       if @news.save
@@ -56,6 +63,10 @@ class NewsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+def from_author
+  @user = User.find(params[:user_id])
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
