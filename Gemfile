@@ -76,3 +76,5 @@ gem "bootstrap", "~> 5.2"
 gem "jquery-rails", "~> 4.5"
 
 gem "popper_js", "~> 2.11"
+
+gem "devise"
