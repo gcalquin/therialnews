@@ -1,6 +1,9 @@
 class NewsController < ApplicationController
   before_action :set_news, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only:[ :new, :create, :edit, :update, :destroy ]
+  before_action only:[:new, :create] do 
+    authorize_request(["author", "admin"])
+  end
   # GET /news or /news.json
   def index
     @news = News.all
