@@ -1,6 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @news %>
+<p>Noticia escrita por : <%=@news.user.email %></p>
 
 <div>
   <%= link_to "Edit this news", edit_news_path(@news) %> |
